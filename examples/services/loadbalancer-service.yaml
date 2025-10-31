@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-loadbalancer
+  labels:
+    app: web
+spec:
+  type: LoadBalancer
+  
+  selector:
+    app: web
+    tier: frontend
+    
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+    protocol: TCP
+    
+  # Optional: Restrict source IPs
+  # loadBalancerSourceRanges:
+  # - 203.0.113.0/24
+  # - 198.51.100.0/24

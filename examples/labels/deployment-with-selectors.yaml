@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp-deployment
+  labels:
+    app: webapp
+    managed-by: platform-team
+spec:
+  replicas: 3
+  
+  # Selector uses matchLabels (equality-based)
+  selector:
+    matchLabels:
+      app: webapp
+      tier: frontend
+      
+  template:
+    metadata:
+      # Pod labels must include all selector labels
+      labels:
+        app: webapp
+        tier: frontend
+        version: v1.0.0
+        environment: production
+    spec:
+      containers:
+      - name: webapp
+        image: nginx:1.21
+        ports:
+        - containerPort: 80

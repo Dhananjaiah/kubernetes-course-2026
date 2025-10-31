@@ -1,0 +1,54 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: database-backup
+spec:
+  # Run every day at 2 AM
+  schedule: "0 2 * * *"
+  
+  # Timezone (Kubernetes 1.25+)
+  # timeZone: "America/New_York"
+  
+  # Keep last 3 successful jobs
+  successfulJobsHistoryLimit: 3
+  
+  # Keep last 1 failed job
+  failedJobsHistoryLimit: 1
+  
+  # Don't allow concurrent backups
+  concurrencyPolicy: Forbid
+  
+  # Don't run if it missed schedule
+  startingDeadlineSeconds: 3600
+  
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          
+          containers:
+          - name: backup
+            image: postgres:13
+            command: ["sh", "-c"]
+            args:
+            - |
+              echo "Starting backup at $(date)"
+              pg_dump -h database-service -U postgres mydb > /backup/backup-$(date +%Y%m%d-%H%M%S).sql
+              echo "Backup completed at $(date)"
+            
+            env:
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: password
+            
+            volumeMounts:
+            - name: backup-storage
+              mountPath: /backup
+          
+          volumes:
+          - name: backup-storage
+            persistentVolumeClaim:
+              claimName: backup-pvc

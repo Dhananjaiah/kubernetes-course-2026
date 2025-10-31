@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: webapp-rs
+  labels:
+    app: webapp
+    environment: production
+spec:
+  replicas: 4
+  
+  selector:
+    matchLabels:
+      app: webapp
+      environment: production
+      
+  template:
+    metadata:
+      labels:
+        app: webapp
+        environment: production
+    spec:
+      containers:
+      - name: webapp
+        image: nginx:1.21
+        ports:
+        - containerPort: 80
+        
+        # Resource requests and limits
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+            
+        # Environment variables
+        env:
+        - name: ENVIRONMENT
+          value: "production"
+        - name: APP_VERSION
+          value: "1.0.0"

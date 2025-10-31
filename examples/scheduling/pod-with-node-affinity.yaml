@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: webapp-with-affinity
+spec:
+  affinity:
+    # Node affinity - control which nodes pod runs on
+    nodeAffinity:
+      # REQUIRED: Pod won't schedule if no matching node
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: disktype
+            operator: In
+            values:
+            - ssd
+            - nvme
+          - key: kubernetes.io/os
+            operator: In
+            values:
+            - linux
+      
+      # PREFERRED: Scheduler tries to match, but not required
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 80
+        preference:
+          matchExpressions:
+          - key: region
+            operator: In
+            values:
+            - us-west-1
+      - weight: 20
+        preference:
+          matchExpressions:
+          - key: environment
+            operator: In
+            values:
+            - production
+    
+    # Pod anti-affinity - spread across nodes
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 100
+        podAffinityTerm:
+          labelSelector:
+            matchLabels:
+              app: webapp
+          topologyKey: kubernetes.io/hostname
+  
+  containers:
+  - name: webapp
+    image: nginx:1.21
+    ports:
+    - containerPort: 80
