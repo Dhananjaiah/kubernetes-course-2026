@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: recreate-deployment
+  labels:
+    app: database-app
+spec:
+  replicas: 3
+  
+  # Recreate strategy - terminates all old pods before creating new ones
+  # Use when multiple versions cannot run simultaneously
+  strategy:
+    type: Recreate
+      
+  selector:
+    matchLabels:
+      app: database-app
+      
+  template:
+    metadata:
+      labels:
+        app: database-app
+    spec:
+      containers:
+      - name: app
+        image: mysql:8.0
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "changeme"
+        ports:
+        - containerPort: 3306

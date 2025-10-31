@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: frontend-rs
+  labels:
+    app: frontend
+    tier: web
+    version: v1
+spec:
+  replicas: 5
+  
+  # Selector can match multiple labels
+  selector:
+    matchLabels:
+      app: frontend
+      tier: web
+      version: v1
+      
+  template:
+    metadata:
+      # Pod labels must match selector
+      labels:
+        app: frontend
+        tier: web
+        version: v1
+    spec:
+      containers:
+      - name: frontend
+        image: nginx:1.21
+        ports:
+        - containerPort: 80
+        
+      # Node selector - only schedule on nodes with this label
+      nodeSelector:
+        disktype: ssd
