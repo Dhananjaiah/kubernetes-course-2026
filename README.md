@@ -178,6 +178,10 @@ Detailed setup instructions are available in [docs/00-setup.md](docs/00-setup.md
 
 ## 🚀 Getting Started
 
+**New to this course?** Start here: **[GETTING-STARTED.md](GETTING-STARTED.md)** - Complete beginner's guide
+
+### Quick Start
+
 1. Clone this repository:
    ```bash
    git clone https://github.com/Dhananjaiah/kubernetes-course-2026.git
@@ -189,6 +193,14 @@ Detailed setup instructions are available in [docs/00-setup.md](docs/00-setup.md
 3. Start with Module 1 in [docs/01-docker-containers.md](docs/01-docker-containers.md)
 
 4. Work through each module sequentially, completing the labs
+
+### 📚 Essential Resources
+
+- 📖 **[Getting Started Guide](GETTING-STARTED.md)** - Your roadmap to success
+- 🛠️ **[Setup Instructions](docs/00-setup.md)** - Install Docker, kubectl, Minikube
+- 📋 **[kubectl Cheat Sheet](docs/kubectl-cheatsheet.md)** - Quick command reference
+- ❓ **[FAQ](docs/FAQ.md)** - Common questions and troubleshooting
+- 🤝 **[Contributing Guide](CONTRIBUTING.md)** - Help improve this course
 
 ## 📁 Repository Structure
 
@@ -233,12 +245,23 @@ kubernetes-course-2026/
 
 ## 🤝 Contributing
 
-Contributions are welcome! If you find issues or have suggestions for improvements:
+Contributions are welcome! We need help completing modules 5-21.
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Submit a pull request
+**How to contribute:**
+
+1. Read the [Contributing Guide](CONTRIBUTING.md)
+2. Fork the repository
+3. Create a feature branch
+4. Make your changes (add modules, examples, fix bugs)
+5. Submit a pull request
+
+**Contribution opportunities:**
+- Complete remaining modules (5-21)
+- Add more example YAML manifests
+- Create additional labs and exercises
+- Improve documentation
+- Fix typos and broken links
+- Translate content
 
 ## 📝 License
 
