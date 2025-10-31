@@ -1,0 +1,39 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: data-processing-job
+spec:
+  # Run 5 successful completions
+  completions: 5
+  
+  # Run 2 pods in parallel
+  parallelism: 2
+  
+  # Retry up to 4 times on failure
+  backoffLimit: 4
+  
+  # Max runtime: 10 minutes
+  activeDeadlineSeconds: 600
+  
+  template:
+    spec:
+      restartPolicy: OnFailure
+      
+      containers:
+      - name: processor
+        image: busybox
+        command: ["sh", "-c"]
+        args:
+        - |
+          echo "Starting data processing job $(date)"
+          echo "Processing batch number: $JOB_COMPLETION_INDEX"
+          sleep 30
+          echo "Job completed successfully $(date)"
+        
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
+          limits:
+            memory: "128Mi"
+            cpu: "200m"

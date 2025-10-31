@@ -6,36 +6,73 @@ This directory contains example YAML manifests for various Kubernetes resources.
 
 ```
 examples/
-├── pods/                  # Pod examples
+├── pods/                      # Module 3: Pods
 │   ├── simple-pod.yaml
 │   ├── multi-container-pod.yaml
 │   ├── pod-with-resources.yaml
 │   └── pod-with-env.yaml
 │
-├── deployments/          # Deployment examples
-│   └── simple-deployment.yaml
+├── replicasets/              # Module 5: ReplicaSets
+│   ├── simple-replicaset.yaml
+│   ├── replicaset-with-resources.yaml
+│   └── replicaset-multiple-labels.yaml
 │
-├── services/             # Service examples
+├── deployments/              # Module 6: Deployments
+│   ├── simple-deployment.yaml
+│   ├── deployment-rolling-update.yaml
+│   ├── deployment-recreate.yaml
+│   └── deployment-with-revision-history.yaml
+│
+├── labels/                   # Module 7: Labels & Selectors
+│   ├── pod-with-labels.yaml
+│   ├── deployment-with-selectors.yaml
+│   └── service-with-selector.yaml
+│
+├── services/                 # Module 8: Services
 │   ├── clusterip-service.yaml
-│   └── nodeport-service.yaml
+│   ├── nodeport-service.yaml
+│   ├── loadbalancer-service.yaml
+│   └── headless-service.yaml
 │
-├── configmaps/          # ConfigMap examples
+├── update-strategies/        # Module 9: Update Strategies
+│   ├── blue-green-deployment.yaml
+│   └── canary-deployment.yaml
+│
+├── daemonsets/               # Module 11: DaemonSets
+│   └── node-logger-daemonset.yaml
+│
+├── jobs/                     # Module 11: Jobs
+│   └── batch-job.yaml
+│
+├── cronjobs/                 # Module 11: CronJobs
+│   └── backup-cronjob.yaml
+│
+├── configmaps/               # Module 12: ConfigMaps
 │   └── configmap.yaml
 │
-├── secrets/             # Secret examples
+├── secrets/                  # Module 12: Secrets
 │   └── secret.yaml
 │
-├── ingress/             # Ingress examples
-│   └── (to be added)
+├── health-probes/            # Module 13: Health Probes
+│   └── pod-with-probes.yaml
 │
-├── network-policies/    # NetworkPolicy examples
-│   └── (to be added)
+├── scheduling/               # Module 14: Node Scheduling
+│   └── pod-with-node-affinity.yaml
 │
-├── storage/             # Storage examples
-│   └── (to be added)
+├── storage/                  # Module 16: Storage & Persistence
+│   └── pvc-example.yaml
 │
-└── helm/                # Helm chart examples
-    └── (to be added)
+├── statefulsets/             # Module 17: StatefulSets
+│   └── mongodb-statefulset.yaml
+│
+├── rbac/                     # Module 18: RBAC
+│   └── developer-role.yaml
+│
+├── ingress/                  # Module 19: Ingress
+│   └── complete-ingress.yaml
+│
+└── network-policies/         # Module 20: Network Policies
+    └── three-tier-app-network-policy.yaml
 ```
 
 ## How to Use
@@ -144,9 +181,19 @@ When adding new examples:
 
 ## Related Course Modules
 
-- Module 3: Pods
+- Module 3: Pods & Pod Lifecycle
+- Module 5: ReplicaSets
 - Module 6: Deployments
+- Module 7: Labels & Selectors
 - Module 8: Services
+- Module 9: Update Strategies & Rollback
+- Module 11: DaemonSets, Jobs & CronJobs
 - Module 12: ConfigMaps & Secrets
+- Module 13: Health Probes
+- Module 14: Node Scheduling
+- Module 16: Storage & Persistence
+- Module 17: StatefulSets
+- Module 18: RBAC
 - Module 19: Ingress
+- Module 20: Network Policies
 - Module 21: Helm
