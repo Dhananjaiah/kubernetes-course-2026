@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: database-headless
+  labels:
+    app: database
+spec:
+  # Headless service - no load balancing, returns pod IPs directly
+  clusterIP: None
+  
+  selector:
+    app: database
+    
+  ports:
+  - name: mysql
+    port: 3306
+    targetPort: 3306
+    protocol: TCP
+---
+# StatefulSet using headless service
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: database
+spec:
+  serviceName: database-headless
+  replicas: 3
+  selector:
+    matchLabels:
+      app: database
+  template:
+    metadata:
+      labels:
+        app: database
+    spec:
+      containers:
+      - name: mysql
+        image: mysql:8.0
+        ports:
+        - containerPort: 3306
+          name: mysql
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "changeme"

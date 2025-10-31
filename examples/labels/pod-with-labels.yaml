@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: labeled-pod
+  labels:
+    # Application identifier
+    app: webapp
+    
+    # Environment
+    environment: production
+    
+    # Application tier
+    tier: frontend
+    
+    # Version
+    version: v1.2.0
+    
+    # Team ownership
+    team: platform
+    
+    # Cost center
+    cost-center: engineering
+    
+  annotations:
+    # Build information
+    build.version: "1.2.0"
+    build.timestamp: "2024-01-15T10:30:00Z"
+    build.commit: "abc123def456"
+    
+    # Contact information
+    owner: "platform-team@company.com"
+    documentation: "https://docs.company.com/webapp"
+    
+spec:
+  containers:
+  - name: webapp
+    image: nginx:1.21
+    ports:
+    - containerPort: 80
