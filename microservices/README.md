@@ -46,12 +46,24 @@ This application consists of 5 microservices and 3 databases:
 
 ## 🚀 Quick Start
 
+**Want to get started quickly?** See [QUICKSTART.md](QUICKSTART.md) for detailed step-by-step instructions.
+
 ### Prerequisites
 
 - Docker & Docker Compose
 - Kubernetes cluster (Minikube, kind, or cloud provider)
 - kubectl configured
 - (Optional) Helm for chart-based deployment
+
+### Super Quick Start (Automated)
+
+```bash
+# For Kubernetes deployment
+./deploy.sh
+
+# To clean up
+./cleanup.sh
+```
 
 ### Option 1: Docker Compose (Development)
 
