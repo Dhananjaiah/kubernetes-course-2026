@@ -2,9 +2,22 @@
 
 A comprehensive, hands-on Kubernetes course from containers to production-ready deployments. This course takes you from Docker basics through advanced Kubernetes concepts with practical examples and exercises.
 
+## 🚀 NEW: Real-World Microservices Project
+
+**Now includes a production-ready e-commerce microservices application!**
+
+The `microservices/` directory contains a complete microservices architecture with:
+- 5 microservices (Frontend, Product, User, Order, Cart)
+- 3 databases (MongoDB, PostgreSQL, Redis)
+- Full Kubernetes manifests
+- Docker Compose for local development
+- Comprehensive documentation
+
+👉 **[Get Started with Microservices →](microservices/README.md)**
+
 ## 📚 Course Overview
 
-This course covers everything you need to master Kubernetes, starting with container fundamentals and progressing through production-grade cluster management. Each module includes theory, practical examples, and hands-on labs based on real-world scenarios.
+This course covers everything you need to master Kubernetes, starting with container fundamentals and progressing through production-grade cluster management. Each module includes theory, practical examples, hands-on labs, and a **real-world microservices project** to apply your knowledge.
 
 ## 🎯 Prerequisites
 
@@ -196,6 +209,7 @@ Detailed setup instructions are available in [docs/00-setup.md](docs/00-setup.md
 
 ### 📚 Essential Resources
 
+- 🚀 **[Microservices Project](microservices/README.md)** - Real-world e-commerce application
 - 📖 **[Getting Started Guide](GETTING-STARTED.md)** - Your roadmap to success
 - 🛠️ **[Setup Instructions](docs/00-setup.md)** - Install Docker, kubectl, Minikube
 - 📋 **[kubectl Cheat Sheet](docs/kubectl-cheatsheet.md)** - Quick command reference
@@ -208,6 +222,16 @@ Detailed setup instructions are available in [docs/00-setup.md](docs/00-setup.md
 kubernetes-course-2026/
 ├── README.md                          # This file
 ├── K8s-Runbook.pptx                  # Original presentation
+├── microservices/                    # 🆕 Real-world microservices project
+│   ├── frontend/                     # API Gateway service
+│   ├── product-service/              # Product catalog service
+│   ├── user-service/                 # User authentication service
+│   ├── order-service/                # Order management service
+│   ├── cart-service/                 # Shopping cart service
+│   ├── k8s/                          # Kubernetes manifests
+│   ├── docker-compose.yml            # Local development setup
+│   ├── README.md                     # Microservices documentation
+│   └── ARCHITECTURE.md               # Architecture details
 ├── docs/                             # Course documentation
 │   ├── 00-setup.md                   # Setup instructions
 │   ├── 01-docker-containers.md       # Module 1
