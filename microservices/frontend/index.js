@@ -18,8 +18,17 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
 
-// Health check endpoint
-app.get('/health', async (req, res) => {
+// Health check endpoint (liveness - is the frontend service itself working)
+app.get('/health', (req, res) => {
+  res.status(200).json({
+    status: 'UP',
+    service: 'frontend',
+    timestamp: new Date().toISOString()
+  });
+});
+
+// Readiness check endpoint (are all dependencies available)
+app.get('/ready', async (req, res) => {
   const services = {
     product: false,
     user: false,
@@ -28,38 +37,32 @@ app.get('/health', async (req, res) => {
   };
 
   try {
-    const productHealth = await axios.get(`${PRODUCT_SERVICE_URL}/health`);
+    const productHealth = await axios.get(`${PRODUCT_SERVICE_URL}/health`, { timeout: 2000 });
     services.product = productHealth.data.status === 'UP';
   } catch (e) { /* service down */ }
 
   try {
-    const userHealth = await axios.get(`${USER_SERVICE_URL}/health`);
+    const userHealth = await axios.get(`${USER_SERVICE_URL}/health`, { timeout: 2000 });
     services.user = userHealth.data.status === 'UP';
   } catch (e) { /* service down */ }
 
   try {
-    const orderHealth = await axios.get(`${ORDER_SERVICE_URL}/health`);
+    const orderHealth = await axios.get(`${ORDER_SERVICE_URL}/health`, { timeout: 2000 });
     services.order = orderHealth.data.status === 'UP';
   } catch (e) { /* service down */ }
 
   try {
-    const cartHealth = await axios.get(`${CART_SERVICE_URL}/health`);
+    const cartHealth = await axios.get(`${CART_SERVICE_URL}/health`, { timeout: 2000 });
     services.cart = cartHealth.data.status === 'UP';
   } catch (e) { /* service down */ }
 
   const allHealthy = Object.values(services).every(status => status === true);
 
   res.status(allHealthy ? 200 : 503).json({
-    status: allHealthy ? 'UP' : 'DEGRADED',
-    service: 'frontend',
+    status: allHealthy ? 'ready' : 'not ready',
     timestamp: new Date().toISOString(),
     services
   });
-});
-
-// Readiness check endpoint
-app.get('/ready', (req, res) => {
-  res.status(200).json({ status: 'ready' });
 });
 
 // API Gateway - Product Service

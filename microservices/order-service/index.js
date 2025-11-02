@@ -125,6 +125,8 @@ app.post('/api/orders', async (req, res) => {
         });
 
         // Update product stock
+        // NOTE: In production, this should use a distributed transaction pattern (Saga, 2PC)
+        // to prevent race conditions during concurrent order processing
         await axios.patch(`${PRODUCT_SERVICE_URL}/api/products/${item.product_id}/stock`, {
           quantity: -item.quantity
         });
