@@ -35,7 +35,18 @@ Before starting this course, you'll need to install:
 3. **Minikube** or **kind** - Local Kubernetes cluster
 4. **Git** - For cloning this repository
 
-Detailed setup instructions are available in [docs/00-setup.md](docs/00-setup.md)
+### Installation Options
+
+Choose the Kubernetes installation method that best fits your needs:
+
+- **For Learning & Local Development**: [Minikube](installations/local/minikube.md), [kind](installations/local/kind.md), [k3d](installations/local/k3d.md)
+- **For Mac/Windows Users**: [Docker Desktop](installations/local/docker-desktop.md), [Rancher Desktop](installations/local/rancher-desktop.md), [Colima](installations/local/colima.md)
+- **For Edge/IoT**: [K3s](installations/local/k3s.md), [MicroK8s](installations/local/microk8s.md)
+- **For Production**: [kubeadm](installations/bare-metal/kubeadm.md), [Kubespray](installations/bare-metal/kubespray.md), [RKE2](installations/bare-metal/rancher-rke2.md)
+
+👉 **[View All Installation Options →](installations/README.md)**
+
+Detailed setup instructions for Minikube are available in [docs/00-setup.md](docs/00-setup.md)
 
 ## 📖 Course Modules
 
@@ -211,8 +222,9 @@ Detailed setup instructions are available in [docs/00-setup.md](docs/00-setup.md
 
 - 🚀 **[Microservices Project](microservices/README.md)** - Real-world e-commerce application
 - 📖 **[Getting Started Guide](GETTING-STARTED.md)** - Your roadmap to success
-- 🛠️ **[Setup Instructions](docs/00-setup.md)** - Install Docker, kubectl, Minikube
-- 📋 **[kubectl Cheat Sheet](docs/kubectl-cheatsheet.md)** - Quick command reference
+- 🛠️ **[Kubernetes Installations](installations/README.md)** - Complete installation guides
+- 📋 **[Setup Instructions](docs/00-setup.md)** - Install Docker, kubectl, Minikube
+- 📝 **[kubectl Cheat Sheet](docs/kubectl-cheatsheet.md)** - Quick command reference
 - ❓ **[FAQ](docs/FAQ.md)** - Common questions and troubleshooting
 - 🤝 **[Contributing Guide](CONTRIBUTING.md)** - Help improve this course
 
@@ -232,6 +244,25 @@ kubernetes-course-2026/
 │   ├── docker-compose.yml            # Local development setup
 │   ├── README.md                     # Microservices documentation
 │   └── ARCHITECTURE.md               # Architecture details
+├── installations/                    # 🆕 Kubernetes installation guides
+│   ├── README.md                     # Installation overview
+│   ├── local/                        # Local/laptop installations
+│   │   ├── minikube.md               # Minikube setup
+│   │   ├── kind.md                   # kind (Kubernetes in Docker)
+│   │   ├── k3d.md                    # k3d (K3s in Docker)
+│   │   ├── k3s.md                    # K3s (lightweight Kubernetes)
+│   │   ├── microk8s.md               # MicroK8s
+│   │   ├── docker-desktop.md         # Docker Desktop Kubernetes
+│   │   ├── rancher-desktop.md        # Rancher Desktop
+│   │   └── colima.md                 # Colima + Kubernetes
+│   └── bare-metal/                   # Production/bare-metal installations
+│       ├── kubeadm.md                # kubeadm
+│       ├── kubespray.md              # Kubespray (Ansible)
+│       ├── kops.md                   # kOps (AWS)
+│       ├── rancher-rke.md            # Rancher RKE
+│       ├── rancher-rke2.md           # Rancher RKE2
+│       ├── talos-linux.md            # Talos Linux
+│       └── coreos-flatcar.md         # CoreOS/Flatcar + kubeadm
 ├── docs/                             # Course documentation
 │   ├── 00-setup.md                   # Setup instructions
 │   ├── 01-docker-containers.md       # Module 1
